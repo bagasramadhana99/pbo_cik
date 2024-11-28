@@ -1,20 +1,18 @@
 <?php
 session_start();
+require_once 'LoginHandler.php';
+
+$errorMessage = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Buat instance LoginHandler
+    $loginHandler = new LoginHandler($username, $password);
+
     // Validasi login
-    if ($username === "admin" && $password === "admin123") {
-        // Set session untuk menyimpan status login
-        $_SESSION['username'] = $username;
-        echo "<script>alert('Login sebagai Admin berhasil!'); window.location.href='admin_dashboard.php';</script>";
-    } elseif ($username === "user" && $password === "user123") {
-        echo "<script>alert('Login sebagai User berhasil!'); window.location.href='home.php';</script>";
-    } else {
-        echo "<p style='color: red;'>Username atau password salah!</p>";
-    }
+    $errorMessage = $loginHandler->validateLogin();
 }
 ?>
 
@@ -73,6 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         button:hover {
             background-color: #45a049;
         }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <?php if ($errorMessage): ?>
+            <p class="error"><?php echo $errorMessage; ?></p>
+        <?php endif; ?>
     </div>
 </body>
 </html>

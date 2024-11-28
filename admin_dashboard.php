@@ -34,6 +34,12 @@ $result_jadwal = $conn->query($sql_jadwal);
 $row_jadwal = $result_jadwal->fetch_assoc();
 $total_jadwal = $row_jadwal['total_jadwal'];
 
+// Ambil data produk (misalnya produk yang sudah ditambahkan)
+$sql_produk = "SELECT COUNT(*) AS total_produk FROM produk";
+$result_produk = $conn->query($sql_produk);
+$row_produk = $result_produk->fetch_assoc();
+$total_produk = $row_produk['total_produk'];
+
 $conn->close();
 ?>
 
@@ -61,8 +67,9 @@ $conn->close();
             color: #555;
         }
         canvas {
-            max-width: 600px;
-            margin: 20px 0;
+            max-width: 800px;
+            height: 300px; /* Atur tinggi chart untuk mencegah tampil terlalu panjang */
+            margin: 4px 0;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -72,7 +79,6 @@ $conn->close();
     
     <div class="content">
         <h1>Selamat Datang di Dashboard Admin</h1>
-        <p>Statistik Data</p>
         <canvas id="dataChart"></canvas>
         
         <script>
@@ -80,24 +86,27 @@ $conn->close();
             const dataChart = new Chart(ctx, {
                 type: 'bar', // Jenis chart: bar, line, pie, dll.
                 data: {
-                    labels: ['pendaftar', 'Galeri', 'Jadwal Konser'],
+                    labels: ['Pendaftar', 'Galeri', 'Jadwal Konser', 'Produk'],
                     datasets: [{
                         label: 'Jumlah Data',
-                        data: [<?php echo $total_band_members; ?>, <?php echo $total_galeri; ?>, <?php echo $total_jadwal; ?>],
+                        data: [<?php echo $total_band_members; ?>, <?php echo $total_galeri; ?>, <?php echo $total_jadwal; ?>, <?php echo $total_produk; ?>],
                         backgroundColor: [
                             'rgba(75, 192, 192, 0.6)',
                             'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)'
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
                         ],
                         borderColor: [
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)'
                         ],
                         borderWidth: 1
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: {
                             beginAtZero: true

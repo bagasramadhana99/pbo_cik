@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 // Query untuk mengambil data dari tabel galeri
 $sql = "SELECT * FROM galeri";
 $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -38,14 +39,7 @@ $result = $conn->query($sql);
                 <div class="hidden md:flex space-x-4">
                     <a class="text-white hover:bg-gray-600 px-3 py-2 rounded" href="home.php">Home</a>
                     <a class="text-white hover:bg-gray-600 px-3 py-2 rounded" href="foto.php">Member JMK</a>
-                    <div class="relative">
-                        <button class="text-white hover:bg-gray-600 px-3 py-2 rounded">Contact Me</button>
-                        <div class="absolute hidden group-hover:block bg-white text-gray-800 rounded shadow-lg mt-1">
-                            <a class="block px-4 py-2 hover:bg-gray-200" href="#">Whatsapp</a>
-                            <hr class="border-gray-300">
-                            <a class="block px-4 py-2 hover:bg-gray-200" href="#">Instagram</a>
-                        </div>
-                    </div>
+                    <a class="text-white hover:bg-gray-600 px-3 py-2 rounded" href="produk.php">Produk JMK</a>
                     <a class="text-gray-400 cursor-not-allowed px-3 py-2 rounded" href="#">Disabled</a>
                 </div>
             </div>

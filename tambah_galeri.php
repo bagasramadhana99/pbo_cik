@@ -16,20 +16,65 @@ include 'koneksi.php'; // Menyertakan file koneksi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Galeri</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            display: flex;
             font-family: Arial, sans-serif;
             margin: 0;
+            background-color: #f4f4f4;
         }
-        .content {
-            margin-left: 220px; 
+        /* Menambahkan margin kiri untuk memberikan ruang setelah navbar */
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: white;
             padding: 20px;
-            flex: 1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 220px; /* Sesuaikan dengan lebar navbar */
         }
-        h2 {
+       
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
             color: #333;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .alert {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
         }
     </style>
 </head>
@@ -37,22 +82,22 @@ include 'koneksi.php'; // Menyertakan file koneksi
 
 <?php include 'navbar.php'; // Menyertakan navbar ?>
 
-<div class="content">
+<div class="container">
     <h2>Tambah Galeri</h2>
     <form action="" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="artist_name" class="form-label">Nama Artis</label>
-            <input type="text" class="form-control" id="artist_name" name="artist_name" required>
+        <div class="form-group">
+            <label for="artist_name">Nama Artis</label>
+            <input type="text" id="artist_name" name="artist_name" required>
         </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Gambar</label>
-            <input type="file" class="form-control" id="image" name="image" required>
+        <div class="form-group">
+            <label for="image">Gambar</label>
+            <input type="file" id="image" name="image" required>
         </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Deskripsi</label>
-            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        <div class="form-group">
+            <label for="description">Deskripsi</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn">Simpan</button>
     </form>
 
     <?php
@@ -112,7 +157,5 @@ include 'koneksi.php'; // Menyertakan file koneksi
     ?>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
