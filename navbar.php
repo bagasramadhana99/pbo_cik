@@ -50,6 +50,7 @@
         <li><a href="admin_dashboard.php">Dashboard</a></li>
         <li><a href="tambah_jadwal.php">Tambah Jadwal Konser</a></li>
         <li><a href="data_join.php">Data Join</a></li>
+        <li><a href="tambah_produk.php">Tambah Produk</a></li>
         <li><a href="tambah_galeri.php">Tambah Galeri</a></li>
         <li><a href="login.php">Logout</a></li>
     </ul>
